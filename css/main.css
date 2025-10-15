@@ -1,0 +1,147 @@
+/* main.css — styles for Kickstarter Hoian (basic theme + components) */
+
+/* ---------- Root theme colors & fonts ---------- */
+:root{
+  --accent: #ff6a3d;        /* orange */
+  --accent-dark: #d95728;
+  --bg-beige: #f7f3e6;
+  --card-bg: #fbf7ea;
+  --muted: #6b5b45;
+  --text: #231f20;
+  --surface: #ffffff;
+  --max-width: 1100px;
+}
+
+/* Global reset-ish */
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; padding:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  background: var(--bg-beige);
+  line-height: 1.5;
+  -webkit-text-size-adjust:100%;
+}
+
+/* Container helpers */
+.container {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Simple utilities */
+.text-muted { color: var(--muted); }
+.text-accent { color: var(--accent); }
+.center { text-align:center; }
+
+/* ---------- Header / Nav ---------- */
+.header {
+  width:100%;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 60;
+}
+.header-inner { height:64px; display:flex; align-items:center; justify-content:space-between; }
+.logo { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:700; font-size:18px; }
+.logo img { height:40px; display:inline-block; }
+
+/* Desktop nav */
+.nav-links { display:flex; gap:28px; align-items:center; }
+.nav-links a { color:var(--text); text-decoration:none; font-weight:600; }
+.nav-links a:hover { color:var(--accent-dark); }
+
+/* Mobile */
+.mobile-toggle { display:none; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position:relative;
+  min-height: calc(80vh - 64px); /* less than full on small screens */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 40px 0;
+}
+.hero-bg {
+  position:absolute; inset:0; z-index:0;
+}
+.hero-bg img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+.hero-overlay {
+  position:absolute; inset:0; background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, transparent 100%); z-index:1;
+}
+.hero-inner { position:relative; z-index:2; text-align:center; max-width:1000px; padding:0 1rem; color:#fff; }
+
+/* Headline */
+.h1 { font-family: "Playfair Display", serif; font-size:40px; line-height:1.02; margin:0 0 12px; font-weight:700; }
+@media(min-width:768px){ .h1 { font-size:56px; } }
+
+/* Subtext */
+.lead { font-size:18px; color: rgba(255,255,255,0.92); margin-bottom:22px; }
+@media(min-width:768px){ .lead { font-size:20px; } }
+
+/* Hero buttons */
+.btn {
+  display:inline-block; padding:12px 22px; border-radius:8px; text-decoration:none; font-weight:700;
+  transition: transform .18s ease, background-color .18s ease, color .18s;
+}
+.btn-primary { background:var(--accent); color:#fff; }
+.btn-primary:hover { background:var(--accent-dark); transform: translateY(-2px); }
+.btn-outline {
+  background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.9);
+}
+.btn-outline:hover { background:#fff; color:var(--text); transform: translateY(-2px); }
+
+/* ---------- Section titles ---------- */
+.section-title { font-family: "Playfair Display", serif; font-size:28px; margin:0 0 8px; color:var(--text); }
+.section-sub { color:var(--muted); margin-bottom:24px; }
+
+/* ---------- Cards: tour list ---------- */
+.card-grid { display:grid; gap:28px; grid-template-columns: 1fr; }
+@media(min-width:768px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.card {
+  background: var(--card-bg);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow: 0 12px 30px rgba(17,17,17,0.06);
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+.card-thumb { width:100%; height:160px; object-fit:cover; display:block; }
+.card-body { padding:20px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.card-title { font-size:20px; margin:0 0 4px; font-weight:700; color:var(--text); }
+.card-desc { color:var(--muted); flex:1; }
+.card-row { display:flex; align-items:center; justify-content:space-between; margin-top:8px; }
+.card-meta { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:14px; }
+
+/* Price badge positioned over image (absolute inside relative container) */
+.badge {
+  position:absolute; top:12px; right:12px; background:var(--accent); color:#fff; padding:6px 10px; border-radius:999px; font-weight:800; font-size:13px;
+  box-shadow: 0 6px 18px rgba(217,87,40,0.12);
+}
+
+/* ---------- Footer ---------- */
+.footer { padding:36px 0; border-top:1px solid rgba(0,0,0,0.04); background:transparent; text-align:center; color:var(--muted); }
+
+/* ---------- Small screens adjustments ---------- */
+@media(max-width:640px){
+  .nav-links { display:none; }
+  .mobile-toggle { display:inline-block; }
+  .h1 { font-size:28px; }
+  .hero { min-height:48vh; }
+}
+
+/* ---------- Utility helpers ---------- */
+.row { display:flex; gap:16px; align-items:center; }
+.muted { color:var(--muted); }
+.text-orange { color:var(--accent); }
+
+/* ---------- Accessibility & minor interactions ---------- */
+a:focus { outline: 3px solid rgba(255,106,61,0.18); outline-offset:3px; border-radius:6px; }
