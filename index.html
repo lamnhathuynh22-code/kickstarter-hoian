@@ -135,38 +135,39 @@
 </script>
 
 
-  <!-- HERO -->
-  <main class="pt-16 flex justify-center">
-    <section class="relative hero-area w-full max-w-5xl h-[600px] rounded-xl overflow-hidden shadow-lg">
-      <img src="../images/homepage1.JPG" alt="Kickstarter Hoian" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+ <!-- HERO -->
+<main class="pt-16 flex justify-center">
+  <section class="relative hero-area w-full max-w-5xl h-[600px] rounded-xl overflow-hidden shadow-lg">
+    <img src="../images/homepage1.JPG" alt="Kickstarter Hoian" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
 
-      <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-        <h1 class="hero-title text-2xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
-          Kick<span class="text-[#28b684]">starter</span> Hoian
-        </h1>
-        <p class="text-lg md:text-xl text-white/90 mb-8 font-bold">
-          A platform for passionate youth in Central Vietnam to grow, shine, and start their career
-        </p>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+      <h1 class="hero-title text-2xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
+        Kick<span class="text-[#28b684]">starter</span> Hoian
+      </h1>
+      <p class="text-lg md:text-xl text-white/90 mb-8 font-bold">
+        A platform for passionate youth in Central Vietnam to grow, shine, and start their career
+      </p>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="pages/tours.html"
-            class="px-8 py-4 text-white rounded-md font-semibold hover:bg-green-600 transition"
-            style="background-color:#28b684;">
-            Explore Our Tours
-          </a>
-          <a href="pages/guides.html"
-            class="px-8 py-4 border-2 border-white text-white rounded-md font-semibold hover:bg-white hover:text-black transition">
-            Meet Our Guides
-          </a>
-        </div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <!-- ✅ Sửa: cuộn xuống section Youth Hoian Tours -->
+        <a href="#youth-tours"
+          class="px-8 py-4 text-white rounded-md font-semibold hover:bg-green-600 transition"
+          style="background-color:#28b684;">
+          Explore Our Tours
+        </a>
+        <!-- ✅ Sửa: đổi thành About Us, dẫn đến trang about.html -->
+        <a href="../about.html"
+          class="px-8 py-4 border-2 border-white text-white rounded-md font-semibold hover:bg-white hover:text-black transition">
+          About Us
+        </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
 
-  <!-- SECTION: YOUTH HOIAN TOUR -->
-<section class="py-16 px-4">
-  <!-- ✅ tăng chiều rộng từ max-w-6xl → max-w-7xl -->
+<!-- ✅ Thêm id cho section để scroll tới -->
+<section id="youth-tours" class="py-16 px-4">
   <div class="bg-white rounded-2xl shadow-lg p-10 max-w-7xl mx-auto">
 
     <!-- Title -->
@@ -197,7 +198,6 @@
           <p class="text-gray-700 mb-4">
            Explore Hoi An through living crafts and the gentle rhythm of its countryside. A slow, hands-on glimpse of how everyday work becomes art and community.
           </p>
-          <!-- ✅ Bỏ phần thời gian tour -->
           <div class="mt-auto flex flex-wrap items-center gap-2 text-sm text-gray-600">
             <a href="tours.html" class="ml-auto learn-link">Learn More →</a>
           </div>
@@ -218,7 +218,6 @@
           <p class="text-gray-700 mb-4">
             Savor Hoi An’s culinary soul—an intimate journey through flavors and the hands that shape them. Whether you sample the classics or trace their making, you’ll taste how tradition becomes everyday life.
           </p>
-          <!-- ✅ Bỏ phần thời gian tour -->
           <div class="mt-auto flex flex-wrap items-center gap-2 text-sm text-gray-600">
             <a href="tours.html" class="ml-auto learn-link">Learn More →</a>
           </div>
@@ -239,7 +238,6 @@
           <p class="text-gray-700 mb-4">
             Walk the thread of time in Hoi An, where East meets West and every corner carries a story. A calm, story-led journey through living heritage and enduring charm.
           </p>
-          <!-- ✅ Bỏ phần thời gian tour -->
           <div class="mt-auto flex flex-wrap items-center gap-2 text-sm text-gray-600">
             <a href="tours.html" class="ml-auto learn-link">Learn More →</a>
           </div>
@@ -250,6 +248,16 @@
 
   </div>
 </section>
+
+<!-- ✅ Script để cuộn mượt xuống phần Youth Tours -->
+<script>
+  document.querySelector('a[href="#youth-tours"]').addEventListener('click', function (e) {
+    e.preventDefault();
+    const section = document.querySelector('#youth-tours');
+    section.scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+
 
 
 <!-- Script cho slideshow trong 3 card -->
