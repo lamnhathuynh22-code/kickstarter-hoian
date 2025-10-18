@@ -260,7 +260,9 @@
 
     <!-- Cloudflare Turnstile -->
     <div class="pt-2">
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAB7WDqz1K7-gyNRc" data-theme="auto"></div>
+      <div class="cf-turnstile"
+           data-sitekey="0x4AAAAAAB7WfpOxmkxiQIRV"  <!-- site key mới (widget 'Kick') -->
+           data-theme="auto"></div>
       <p class="text-xs text-gray-500 mt-2">Protected by Cloudflare Turnstile.</p>
     </div>
 
@@ -306,6 +308,7 @@
 
 <script>
   // === CONFIG ===
+  // ⚠️ Đổi URL dưới đây thành URL Web App của bạn (Latest deployment)
   const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzc28y3jWQY2sIw24wfHpnIf57aIobmcBO6xja2o-Nr6IWDLtlkAKSK7UwpJydsfnVYHA/exec';
 
   const ROUTES = {
@@ -331,14 +334,14 @@
   const modal = document.getElementById("successModal");
   const closeModal = document.getElementById("closeModal");
 
-  // Disable past dates
+  // Disable past dates (timezone-safe)
   (() => {
     const tzOffset = new Date().getTimezoneOffset() * 60000;
     const todayISO = new Date(Date.now() - tzOffset).toISOString().slice(0, 10);
     dateInput.min = todayISO;
   })();
 
-  // Dynamic route list
+  // Dynamic routes by tour
   tourSelect.addEventListener("change", () => {
     const selected = tourSelect.value;
     routeSelect.innerHTML = '<option value="">-- Choose a route --</option>';
@@ -357,36 +360,35 @@
     }
   });
 
-  // Handle form submit
+  // Submit (URL-encoded to avoid CORS preflight)
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const token = form.querySelector('input[name="cf-turnstile-response"]')?.value;
-    if (!token) return alert("Please verify you are human (Turnstile).");
-    if (!tourSelect.value || !routeSelect.value) return alert("Please choose both Tour and Route.");
-    if (dateInput.value < dateInput.min) return alert("Please choose a valid date.");
+    if (!token) { alert("Please verify you are human (Turnstile)."); return; }
+    if (!tourSelect.value || !routeSelect.value) { alert("Please choose both Tour and Route."); return; }
+    if (dateInput.value && dateInput.min && dateInput.value < dateInput.min) { alert("Please choose a valid date."); return; }
 
-    const data = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
-      tour: form.tour.value,
-      route: form.route.value,
-      date: form.date.value,
+    const body = new URLSearchParams({
+      name:   form.name.value.trim(),
+      email:  form.email.value.trim(),
+      phone:  form.phone.value.trim(),
+      tour:   form.tour.value,
+      route:  form.route.value,
+      date:   form.date.value,
       guests: form.guests.value,
-      notes: form.notes.value.trim(),
-      "cf-turnstile-response": token
-    };
+      notes:  form.notes.value.trim(),
+      'cf-turnstile-response': token
+    });
 
     try {
-      const res = await fetch(WEBAPP_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-      const json = await res.json();
+      const res = await fetch(WEBAPP_URL, { method: "POST", body });
+      const ct = res.headers.get('content-type') || '';
+      let ok = false, json = {};
+      if (ct.includes('application/json')) { json = await res.json(); ok = !!json.ok; }
+      else { ok = res.ok; }
 
-      if (json.ok) {
+      if (ok) {
         modal.classList.remove("hidden");
         form.reset();
         routeSelect.disabled = true;
@@ -395,19 +397,14 @@
         alert("Submission failed: " + (json.error || "Unknown error"));
       }
     } catch (err) {
-      alert("Network error. Please try again later.");
       console.error(err);
+      alert("Network error. Please try again later.");
     }
   });
 
   // Close success popup
-  closeModal.addEventListener("click", () => {
-    modal.classList.add("hidden");
-  });
+  closeModal.addEventListener("click", () => modal.classList.add("hidden"));
 </script>
-
-
-
 
 
 <!-- Footer -->
