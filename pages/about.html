@@ -161,27 +161,38 @@
 
 
 <!-- Hero with video -->
-<section class="relative flex flex-col items-center justify-center text-center mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-12 rounded-2xl overflow-hidden shadow-lg"
-         style="aspect-ratio: 16 / 9; max-height: 80vh;">
+<section
+  class="relative flex flex-col items-center justify-center text-center mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-12 rounded-2xl overflow-hidden shadow-lg"
+  style="aspect-ratio: 16 / 9; max-height: 80vh;"
+>
   <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover rounded-2xl">
-    <source src="/images/aboutus.mp4" type="video/mp4" />
+    <source src="../images/aboutus.mp4" type="video/mp4" />
   </video>
 
-  <!-- overlay sáng hơn, giảm mờ xuống -->
-  <div class="absolute inset-0 bg-white/25 rounded-2xl"></div>
+  <!-- Overlay: mobile tối hơn để tăng tương phản, PC giữ trắng mờ -->
+  <div class="absolute inset-0 rounded-2xl bg-black/40 md:bg-white/25"></div>
 
-  <!-- Tiêu đề -->
-  <h1 class="relative font-['Playfair_Display'] text-6xl md:text-7xl font-extrabold text-black mb-6 leading-tight drop-shadow-md">
+  <!-- Title -->
+  <h1
+    class="relative z-10 font-['Playfair_Display'] text-3xl sm:text-4xl md:text-7xl font-extrabold text-black mb-3 sm:mb-4 md:mb-6 leading-snug md:leading-tight drop-shadow-md break-words whitespace-normal max-w-[90vw] md:max-w-none"
+  >
     About Kick<span class="text-[#28b684]">starter</span> Hoian
   </h1>
 
   <!-- Become Our Members -->
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScF-37pZNj604bKJuCljTok0yfpxawMeKtNtA5zJvK6gz8QCA/closedform"
-     target="_blank"
-     class="relative inline-block px-8 py-4 bg-[#28b684] text-white font-['Montserrat'] font-semibold text-lg rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-[#1f9a6e]">
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLScF-37pZNj604bKJuCljTok0yfpxawMeKtNtA5zJvK6gz8QCA/closedform"
+    target="_blank"
+    class="relative z-10 inline-block rounded-lg shadow-lg bg-[#28b684] text-white font-['Montserrat'] font-semibold
+           text-sm px-5 py-3
+           sm:text-base sm:px-6 sm:py-3.5
+           md:text-lg md:px-8 md:py-4
+           transition-transform hover:scale-105 hover:bg-[#1f9a6e]"
+  >
     Become Our Members
   </a>
 </section>
+
 
  <!-- Intro Block -->
 <section class="relative py-16 bg-gradient-to-b from-[#fffdf5] via-[#fffaf0] to-[#f5faf7]">
@@ -402,9 +413,9 @@
             class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-cta font-medium text-white text-base md:text-lg bg-transparent border-2 border-white transition-colors duration-200 hover:bg-white hover:text-[#28b684] focus:outline-none focus:ring-4 focus:ring-white/25">
             Book Your Experience
           </a>
-          <a href="contact_support.html"
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScF-37pZNj604bKJuCljTok0yfpxawMeKtNtA5zJvK6gz8QCA/closedform" target="_blank"
             class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-cta font-medium text-white text-base md:text-lg bg-transparent border-2 border-white transition-colors duration-200 hover:bg-white hover:text-[#28b684] focus:outline-none focus:ring-4 focus:ring-white/25">
-            Ask Questions
+           Become Our Member
           </a>
         </div>
       </div>
