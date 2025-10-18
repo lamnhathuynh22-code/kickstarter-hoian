@@ -130,35 +130,70 @@
 </script>
 
 <main class="pt-16">
-<!-- Hero -->
+
+<!-- HERO -->
 <section class="pt-24 pb-12 text-center">
-  <h1 class="text-3xl md:text-5xl font-bold text-[#28b684] mb-4">Book Your Experience</h1>
-  <p class="text-gray-600 text-lg">Fill out the form below to reserve your spot with our local youth guides.</p>
+  <h1 class="text-3xl md:text-5xl font-bold text-[#28b684] mb-4">
+    Book Your Experience
+  </h1>
+  <p class="text-gray-600 text-lg">
+    Fill out the form below to reserve your spot with our local youth guides.
+  </p>
 </section>
 
-<!-- Booking Form -->
+<!-- BOOKING FORM -->
 <section class="max-w-3xl mx-auto px-6 pb-20">
-  <form id="bookingForm" class="bg-white rounded-2xl shadow-lg p-8 space-y-6">
-    
+  <form id="bookingForm" class="bg-white rounded-2xl shadow-lg p-8 space-y-6" novalidate>
+    <!-- Full Name -->
     <div>
-      <label class="block text-sm font-semibold text-gray-700">Full Name</label>
-      <input type="text" name="name" required class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none">
+      <label class="block text-sm font-semibold text-gray-700">
+        Full Name <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        name="name"
+        required
+        class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+      />
     </div>
 
+    <!-- Email + Phone -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <label class="block text-sm font-semibold text-gray-700">Email</label>
-        <input type="email" name="email" required class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none">
+        <label class="block text-sm font-semibold text-gray-700">
+          Email <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="email"
+          name="email"
+          required
+          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+        />
       </div>
       <div>
-        <label class="block text-sm font-semibold text-gray-700">Phone</label>
-        <input type="tel" name="phone" required class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none">
+        <label class="block text-sm font-semibold text-gray-700">
+          Phone <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="tel"
+          name="phone"
+          required
+          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+        />
       </div>
     </div>
 
+    <!-- Tour -->
     <div>
-      <label class="block text-sm font-semibold text-gray-700">Select Tour</label>
-      <select name="tour" required class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none">
+      <label class="block text-sm font-semibold text-gray-700">
+        Select Tour <span class="text-red-500">*</span>
+      </label>
+      <select
+        id="tourSelect"
+        name="tour"
+        required
+        class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+      >
         <option value="">-- Choose a tour --</option>
         <option value="Art Hoian">Art Hoian</option>
         <option value="Taste Hoian">Taste Hoian</option>
@@ -166,36 +201,213 @@
       </select>
     </div>
 
+    <!-- Route -->
+    <div>
+      <label class="block text-sm font-semibold text-gray-700">
+        Select Route <span class="text-red-500">*</span>
+      </label>
+      <select
+        id="routeSelect"
+        name="route"
+        required
+        disabled
+        class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+      >
+        <option value="">-- Choose a route --</option>
+      </select>
+      <p id="routeHelp" class="mt-1 text-xs text-gray-500">Please choose a tour first.</p>
+    </div>
+
+    <!-- Date + Guests -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <label class="block text-sm font-semibold text-gray-700">Date</label>
-        <input type="date" name="date" required class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none">
+        <label class="block text-sm font-semibold text-gray-700">
+          Date <span class="text-red-500">*</span>
+        </label>
+        <input
+          id="dateInput"
+          type="date"
+          name="date"
+          required
+          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+        />
       </div>
       <div>
-        <label class="block text-sm font-semibold text-gray-700">Number of Guests</label>
-        <input type="number" name="guests" min="1" value="1" required class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none">
+        <label class="block text-sm font-semibold text-gray-700">
+          Number of Guests <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="number"
+          name="guests"
+          min="1"
+          value="1"
+          required
+          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+        />
       </div>
     </div>
 
+    <!-- Notes -->
     <div>
       <label class="block text-sm font-semibold text-gray-700">Notes</label>
-      <textarea name="notes" rows="4" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"></textarea>
+      <textarea
+        name="notes"
+        rows="4"
+        class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+        placeholder="Let us know if you have any preferences or special notes — e.g. transportation choice (bicycle, motorbike, or car), children joining the trip, dietary requirements, preferred departure time, or pick-up location.">
+      </textarea>
     </div>
 
-    <button type="submit" class="w-full bg-[#28b684] text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition">
+    <!-- Cloudflare Turnstile -->
+    <div class="pt-2">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAB7WDqz1K7-gyNRc" data-theme="auto"></div>
+      <p class="text-xs text-gray-500 mt-2">Protected by Cloudflare Turnstile.</p>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-[#28b684] text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition"
+    >
       Submit Booking
     </button>
   </form>
-<!-- ⚠️ Booking Note -->
-<div class="mt-6 bg-[#fff3cd] border border-[#ffeeba] text-[#856404] rounded-lg px-4 py-3 text-sm md:text-base">
-  <strong>Note:</strong> Your bookings must be submitted at least <span class="font-semibold">5 days in advance</span>.<br>
-  In case of urgent requests (less than 5 days prior to your tour dates), please kindly contact us via
-  <a href="mailto:kickstarterhoian@gmail.com" class="underline hover:text-[#28b684]">kickstarterhoian@gmail.com</a>
-  or WhatsApp at
-  <a href="https://wa.me/84935867412" target="_blank" class="underline hover:text-[#28b684]">(+84 935 867 412)</a>.
-</div>
-  <p id="responseMessage" class="text-center mt-6 font-semibold"></p>
+
+  <!-- Booking Note -->
+  <div class="mt-6 bg-[#fff3cd] border border-[#ffeeba] text-[#856404] rounded-lg px-4 py-3 text-sm md:text-base">
+    <strong>Note:</strong> Your bookings must be submitted at least
+    <span class="font-semibold">5 days in advance</span>.<br />
+    In case of urgent requests (less than 5 days prior to your tour dates), please kindly contact us
+    via
+    <a href="mailto:kickstarterhoian@gmail.com" class="underline hover:text-[#28b684]">kickstarterhoian@gmail.com</a>
+    or WhatsApp at
+    <a href="https://wa.me/84935867412" target="_blank" class="underline hover:text-[#28b684]">(+84 935 867 412)</a>.
+  </div>
 </section>
+
+<!-- SUCCESS POPUP -->
+<div id="successModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-2xl shadow-xl p-8 max-w-sm text-center">
+    <h3 class="text-2xl font-bold text-[#28b684] mb-3">Booking Submitted!</h3>
+    <p class="text-gray-700 mb-6">
+      Thank you for your booking. Our team will contact you via WhatsApp or email within
+      <strong>24 hours</strong> to confirm your booking details and answer any questions you may have.
+    </p>
+    <button
+      id="closeModal"
+      class="px-6 py-2 bg-[#28b684] text-white rounded-lg font-semibold hover:bg-green-700 transition"
+    >
+      OK
+    </button>
+  </div>
+</div>
+
+<!-- Cloudflare Turnstile Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+  // === CONFIG ===
+  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzc28y3jWQY2sIw24wfHpnIf57aIobmcBO6xja2o-Nr6IWDLtlkAKSK7UwpJydsfnVYHA/exec';
+
+  const ROUTES = {
+    "Art Hoian": [
+      "Route 1 — A Living Museum of Craftsmanship — Cycling to Kim Bồng & Trà Nhiêu",
+      "Route 2 — The Art of Everyday Life — Cycling to Thanh Hà & Trà Quế",
+    ],
+    "Taste Hoian": [
+      "Route 1 — The Hoian Icons of Taste",
+      "Route 2 — The Hoian Origin Flavors",
+    ],
+    "Touch Hoian": [
+      "Route 1 — A Legacy of Civilizations — Hoi An Ancient Town",
+      "Route 2 — Path to Deity — My Son Sanctuary",
+    ],
+  };
+
+  const form = document.getElementById("bookingForm");
+  const tourSelect = document.getElementById("tourSelect");
+  const routeSelect = document.getElementById("routeSelect");
+  const routeHelp = document.getElementById("routeHelp");
+  const dateInput = document.getElementById("dateInput");
+  const modal = document.getElementById("successModal");
+  const closeModal = document.getElementById("closeModal");
+
+  // Disable past dates
+  (() => {
+    const tzOffset = new Date().getTimezoneOffset() * 60000;
+    const todayISO = new Date(Date.now() - tzOffset).toISOString().slice(0, 10);
+    dateInput.min = todayISO;
+  })();
+
+  // Dynamic route list
+  tourSelect.addEventListener("change", () => {
+    const selected = tourSelect.value;
+    routeSelect.innerHTML = '<option value="">-- Choose a route --</option>';
+    if (ROUTES[selected]) {
+      ROUTES[selected].forEach(r => {
+        const opt = document.createElement("option");
+        opt.value = r;
+        opt.textContent = r;
+        routeSelect.appendChild(opt);
+      });
+      routeSelect.disabled = false;
+      routeHelp.textContent = "Please select a route.";
+    } else {
+      routeSelect.disabled = true;
+      routeHelp.textContent = "Please choose a tour first.";
+    }
+  });
+
+  // Handle form submit
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const token = form.querySelector('input[name="cf-turnstile-response"]')?.value;
+    if (!token) return alert("Please verify you are human (Turnstile).");
+    if (!tourSelect.value || !routeSelect.value) return alert("Please choose both Tour and Route.");
+    if (dateInput.value < dateInput.min) return alert("Please choose a valid date.");
+
+    const data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      tour: form.tour.value,
+      route: form.route.value,
+      date: form.date.value,
+      guests: form.guests.value,
+      notes: form.notes.value.trim(),
+      "cf-turnstile-response": token
+    };
+
+    try {
+      const res = await fetch(WEBAPP_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+
+      if (json.ok) {
+        modal.classList.remove("hidden");
+        form.reset();
+        routeSelect.disabled = true;
+        if (window.turnstile) turnstile.reset();
+      } else {
+        alert("Submission failed: " + (json.error || "Unknown error"));
+      }
+    } catch (err) {
+      alert("Network error. Please try again later.");
+      console.error(err);
+    }
+  });
+
+  // Close success popup
+  closeModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+</script>
+
+
+
 
 
 <!-- Footer -->
