@@ -439,33 +439,5 @@
   </div>
 </footer>
 
-<!-- Font Awesome -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" crossorigin="anonymous"></script>
-
-<!-- ✅ Gửi dữ liệu qua Google Sheets -->
-<script>
-document.getElementById("bookingForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const form = e.target;
-  const data = new FormData(form); 
-
-  const scriptURL = "https://script.google.com/macros/s/AKfycbw1ALZsxBUXDDZCivItLZZfcp3TGVoNfcUnNmh4RfNCPRltKICgsbiVF934B064MnEUDw/exec"; // 🔗 Dán link Web App của bạn tại đây
-
-  try {
-    const res = await fetch(scriptURL, { method: "POST", body: data });
-    if (res.ok) {
-      document.getElementById("responseMessage").textContent = "✅ Booking submitted successfully!";
-      form.reset();
-    } else {
-      document.getElementById("responseMessage").textContent = "⚠️ Submission failed.";
-    }
-  } catch (err) {
-    document.getElementById("responseMessage").textContent = "❌ Error sending data.";
-    console.error(err);
-  }
-});
-</script>
-
 </body>
 </html>
