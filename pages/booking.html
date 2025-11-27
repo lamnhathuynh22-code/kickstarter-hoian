@@ -324,7 +324,10 @@
   const dateInput = document.getElementById("dateInput");
   const modal = document.getElementById("successModal");
   const closeModal = document.getElementById("closeModal");
-
+// Đảm bảo textarea Notes không có khoảng trắng mặc định để placeholder hiện ra
+if (form.notes) {
+  form.notes.value = form.notes.value.trim();
+}
   // Disable past dates (timezone-safe)
   (() => {
     const tzOffset = new Date().getTimezoneOffset() * 60000;
