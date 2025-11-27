@@ -35,7 +35,7 @@
 </head>
 <body>
     
- <header class="fixed w-full top-0 z-50 bg-white/60 backdrop-blur-sm border-b">
+<header class="fixed w-full top-0 z-50 bg-white/60 backdrop-blur-sm border-b">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="../index.html" class="flex items-center gap-3">
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<!-- Script -->
+<!-- Script cho mobile nav -->
 <script>
   const mobileBtn = document.getElementById('mobile-btn');
   const mobileNav = document.getElementById('mobile-nav');
@@ -131,183 +131,176 @@
 
 <main class="pt-16">
 
-<!-- HERO -->
-<section class="pt-24 pb-12 text-center">
-  <h1 class="text-3xl md:text-5xl font-bold text-[#28b684] mb-4">
-    Book Your Experience
-  </h1>
-  <p class="text-gray-600 text-lg">
-    Fill out the form below to reserve your spot with our local youth guides.
-  </p>
-</section>
-
-<!-- BOOKING FORM -->
-<section class="max-w-3xl mx-auto px-6 pb-20">
-  <form id="bookingForm" class="bg-white rounded-2xl shadow-lg p-8 space-y-6" novalidate>
-    <!-- Full Name -->
-    <div>
-      <label class="block text-sm font-semibold text-gray-700">
-        Full Name <span class="text-red-500">*</span>
-      </label>
-      <input
-        type="text"
-        name="name"
-        required
-        class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
-      />
-    </div>
-
-    <!-- Email + Phone -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <label class="block text-sm font-semibold text-gray-700">
-          Email <span class="text-red-500">*</span>
-        </label>
-        <input
-          type="email"
-          name="email"
-          required
-          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
-        />
-      </div>
-      <div>
-        <label class="block text-sm font-semibold text-gray-700">
-          Phone <span class="text-red-500">*</span>
-        </label>
-        <input
-          type="tel"
-          name="phone"
-          required
-          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
-        />
-      </div>
-    </div>
-
-    <!-- Tour -->
-    <div>
-      <label class="block text-sm font-semibold text-gray-700">
-        Select Tour <span class="text-red-500">*</span>
-      </label>
-      <select
-        id="tourSelect"
-        name="tour"
-        required
-        class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
-      >
-        <option value="">-- Choose a tour --</option>
-        <option value="Art Hoian">Art Hoian</option>
-        <option value="Taste Hoian">Taste Hoian</option>
-        <option value="Touch Hoian">Touch Hoian</option>
-      </select>
-    </div>
-
-    <!-- Route -->
-    <div>
-      <label class="block text-sm font-semibold text-gray-700">
-        Select Route <span class="text-red-500">*</span>
-      </label>
-      <select
-        id="routeSelect"
-        name="route"
-        required
-        disabled
-        class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
-      >
-        <option value="">-- Choose a route --</option>
-      </select>
-      <p id="routeHelp" class="mt-1 text-xs text-gray-500">Please choose a tour first.</p>
-    </div>
-
-    <!-- Date + Guests -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <label class="block text-sm font-semibold text-gray-700">
-          Date <span class="text-red-500">*</span>
-        </label>
-        <input
-          id="dateInput"
-          type="date"
-          name="date"
-          required
-          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
-        />
-      </div>
-      <div>
-        <label class="block text-sm font-semibold text-gray-700">
-          Number of Guests <span class="text-red-500">*</span>
-        </label>
-        <input
-          type="number"
-          name="guests"
-          min="1"
-          value="1"
-          required
-          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
-        />
-      </div>
-    </div>
-
-    <!-- Notes -->
-    <div>
-      <label class="block text-sm font-semibold text-gray-700">Notes</label>
-      <textarea
-        name="notes"
-        rows="4"
-        class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
-        placeholder="Let us know if you have any preferences or special notes — e.g. transportation choice (bicycle, motorbike, or car), children joining the trip, dietary requirements, preferred departure time, or pick-up location.">
-      </textarea>
-    </div>
-
-    <!-- Hidden reCAPTCHA token field -->
-    <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
-
-    <button
-      type="submit"
-      class="w-full bg-[#28b684] text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition"
-    >
-      Submit Booking
-    </button>
-  </form>
-
-  <!-- Booking Note -->
-  <div class="mt-6 bg-[#fff3cd] border border-[#ffeeba] text-[#856404] rounded-lg px-4 py-3 text-sm md:text-base">
-    <strong>Note:</strong> Your bookings must be submitted at least
-    <span class="font-semibold">5 days in advance</span>.<br />
-    In case of urgent requests (less than 5 days prior to your tour dates), please kindly contact us
-    via
-    <a href="mailto:kickstarterhoian@gmail.com" class="underline hover:text-[#28b684]">kickstarterhoian@gmail.com</a>
-    or WhatsApp at
-    <a href="https://wa.me/84935867412" target="_blank" class="underline hover:text-[#28b684]">(+84 935 867 412)</a>.
-  </div>
-</section>
-
-<!-- SUCCESS POPUP -->
-<div id="successModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-  <div class="bg-white rounded-2xl shadow-xl p-8 max-w-sm text-center">
-    <h3 class="text-2xl font-bold text-[#28b684] mb-3">Booking Submitted!</h3>
-    <p class="text-gray-700 mb-6">
-      Thank you for your booking. Our team will contact you via WhatsApp or email within
-      <strong>24 hours</strong> to confirm your booking details and answer any questions you may have.
+  <!-- HERO -->
+  <section class="pt-24 pb-12 text-center">
+    <h1 class="text-3xl md:text-5xl font-bold text-[#28b684] mb-4">
+      Book Your Experience
+    </h1>
+    <p class="text-gray-600 text-lg">
+      Fill out the form below to reserve your spot with our local youth guides.
     </p>
-    <button
-      id="closeModal"
-      class="px-6 py-2 bg-[#28b684] text-white rounded-lg font-semibold hover:bg-green-700 transition"
-    >
-      OK
-    </button>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section class="max-w-3xl mx-auto px-6 pb-20">
+    <form id="bookingForm" class="bg-white rounded-2xl shadow-lg p-8 space-y-6" novalidate>
+      <!-- Full Name -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700">
+          Full Name <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          name="name"
+          required
+          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+        />
+      </div>
+
+      <!-- Email + Phone -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700">
+            Email <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            required
+            class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700">
+            Phone <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            required
+            class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+          />
+        </div>
+      </div>
+
+      <!-- Tour -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700">
+          Select Tour <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="tourSelect"
+          name="tour"
+          required
+          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+        >
+          <option value="">-- Choose a tour --</option>
+          <option value="Art Hoian">Art Hoian</option>
+          <option value="Taste Hoian">Taste Hoian</option>
+          <option value="Touch Hoian">Touch Hoian</option>
+        </select>
+      </div>
+
+      <!-- Route -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700">
+          Select Route <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="routeSelect"
+          name="route"
+          required
+          disabled
+          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+        >
+          <option value="">-- Choose a route --</option>
+        </select>
+        <p id="routeHelp" class="mt-1 text-xs text-gray-500">Please choose a tour first.</p>
+      </div>
+
+      <!-- Date + Guests -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700">
+            Date <span class="text-red-500">*</span>
+          </label>
+          <input
+            id="dateInput"
+            type="date"
+            name="date"
+            required
+            class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700">
+            Number of Guests <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="number"
+            name="guests"
+            min="1"
+            value="1"
+            required
+            class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+          />
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700">Notes</label>
+        <textarea
+          name="notes"
+          rows="4"
+          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+          placeholder="Let us know if you have any preferences or special notes — e.g. transportation choice (bicycle, motorbike, or car), children joining the trip, dietary requirements, preferred departure time, or pick-up location."></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-[#28b684] text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition"
+      >
+        Submit Booking
+      </button>
+    </form>
+
+    <!-- Booking Note -->
+    <div class="mt-6 bg-[#fff3cd] border border-[#ffeeba] text-[#856404] rounded-lg px-4 py-3 text-sm md:text-base">
+      <strong>Note:</strong> Your bookings must be submitted at least
+      <span class="font-semibold">5 days in advance</span>.<br />
+      In case of urgent requests (less than 5 days prior to your tour dates), please kindly contact us
+      via
+      <a href="mailto:kickstarterhoian@gmail.com" class="underline hover:text-[#28b684]">kickstarterhoian@gmail.com</a>
+      or WhatsApp at
+      <a href="https://wa.me/84935867412" target="_blank" class="underline hover:text-[#28b684]">(+84 935 867 412)</a>.
+    </div>
+  </section>
+
+  <!-- SUCCESS POPUP -->
+  <div id="successModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl shadow-xl p-8 max-w-sm text-center">
+      <h3 class="text-2xl font-bold text-[#28b684] mb-3">Booking Submitted!</h3>
+      <p class="text-gray-700 mb-6">
+        Thank you for your booking. Our team will contact you via WhatsApp or email within
+        <strong>24 hours</strong> to confirm your booking details and answer any questions you may have.
+      </p>
+      <button
+        id="closeModal"
+        class="px-6 py-2 bg-[#28b684] text-white rounded-lg font-semibold hover:bg-green-700 transition"
+      >
+        OK
+      </button>
+    </div>
   </div>
-</div>
 
-<!-- reCAPTCHA v3 script (replace SITE_KEY below) -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LdUrRYsAAAAAAMM21By6dawBQR1bme5KaEudrTLo"></script>
+</main>
 
+<!-- Script chính -->
 <script>
   // === CONFIG ===
   // ⚠️ Đổi URL dưới đây thành URL Web App của bạn (Latest deployment)
   const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzc28y3jWQY2sIw24wfHpnIf57aIobmcBO6xja2o-Nr6IWDLtlkAKSK7UwpJydsfnVYHA/exec';
-
-  const RECAPTCHA_SITE_KEY = '6LdUrRYsAAAAAAMM21By6dawBQR1bme5KaEudrTLo';
-  const RECAPTCHA_ACTION = 'submit_booking'; // dùng để validate phía server
 
   const ROUTES = {
     "Art Hoian": [
@@ -331,7 +324,6 @@
   const dateInput = document.getElementById("dateInput");
   const modal = document.getElementById("successModal");
   const closeModal = document.getElementById("closeModal");
-  const recaptchaField = document.getElementById("g-recaptcha-response");
 
   // Disable past dates (timezone-safe)
   (() => {
@@ -359,44 +351,49 @@
     }
   });
 
-  // Form submit: execute reCAPTCHA v3 then send
+  // Form submit (không dùng reCAPTCHA)
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     // Basic client validation
-    if (!tourSelect.value || !routeSelect.value) { alert("Please choose both Tour and Route."); return; }
-    if (dateInput.value && dateInput.min && dateInput.value < dateInput.min) { alert("Please choose a valid date."); return; }
+    if (!tourSelect.value || !routeSelect.value) {
+      alert("Please choose both Tour and Route.");
+      return;
+    }
+
+    if (dateInput.value && dateInput.min && dateInput.value < dateInput.min) {
+      alert("Please choose a valid date.");
+      return;
+    }
+
+    // Chuẩn bị dữ liệu gửi đi (URL-encoded)
+    const body = new URLSearchParams({
+      name:   form.name.value.trim(),
+      email:  form.email.value.trim(),
+      phone:  form.phone.value.trim(),
+      tour:   form.tour.value,
+      route:  form.route.value,
+      date:   form.date.value,
+      guests: form.guests.value,
+      notes:  form.notes.value.trim()
+    });
 
     try {
-      // execute reCAPTCHA v3
-      const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, {action: RECAPTCHA_ACTION});
-      recaptchaField.value = token;
-
-      // pack body (URL-encoded)
-      const body = new URLSearchParams({
-        name:   form.name.value.trim(),
-        email:  form.email.value.trim(),
-        phone:  form.phone.value.trim(),
-        tour:   form.tour.value,
-        route:  form.route.value,
-        date:   form.date.value,
-        guests: form.guests.value,
-        notes:  form.notes.value.trim(),
-        'g-recaptcha-response': token,
-        action: RECAPTCHA_ACTION
-      });
-
       const res = await fetch(WEBAPP_URL, { method: "POST", body });
       const ct = res.headers.get('content-type') || '';
       let ok = false, json = {};
-      if (ct.includes('application/json')) { json = await res.json(); ok = !!json.ok; }
-      else { ok = res.ok; }
+
+      if (ct.includes('application/json')) {
+        json = await res.json();
+        ok = !!json.ok;
+      } else {
+        ok = res.ok;
+      }
 
       if (ok) {
         modal.classList.remove("hidden");
         form.reset();
         routeSelect.disabled = true;
-        // Note: reCAPTCHA v3 tokens are single-use and short-lived; no reset API needed.
       } else {
         alert("Submission failed: " + (json.error || "Unknown error"));
       }
@@ -409,7 +406,6 @@
   // Close success popup
   closeModal.addEventListener("click", () => modal.classList.add("hidden"));
 </script>
-
 
 <!-- Footer -->
 <footer class="bg-white/80 py-8 border-t">
