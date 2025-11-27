@@ -143,7 +143,14 @@
 
   <!-- BOOKING FORM -->
   <section class="max-w-3xl mx-auto px-6 pb-20">
-    <form id="bookingForm" class="bg-white rounded-2xl shadow-lg p-8 space-y-6" novalidate>
+    <!-- ❶ FORM gửi thẳng đến Web App -->
+    <form
+      id="bookingForm"
+      class="bg-white rounded-2xl shadow-lg p-8 space-y-6"
+      novalidate
+      method="POST"
+      action="https://script.google.com/macros/s/AKfycbw1ALZsxBUXDDZCivItLZZfcp3TGVoNfcUnNmh4RfNCPRltKICgsbiVF934B064MnEUDw/exec"
+    >
       <!-- Full Name -->
       <div>
         <label class="block text-sm font-semibold text-gray-700">
@@ -277,31 +284,10 @@
     </div>
   </section>
 
-  <!-- SUCCESS POPUP -->
-  <div id="successModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-    <div class="bg-white rounded-2xl shadow-xl p-8 max-w-sm text-center">
-      <h3 class="text-2xl font-bold text-[#28b684] mb-3">Booking Submitted!</h3>
-      <p class="text-gray-700 mb-6">
-        Thank you for your booking. Our team will contact you via WhatsApp or email within
-        <strong>24 hours</strong> to confirm your booking details and answer any questions you may have.
-      </p>
-      <button
-        id="closeModal"
-        class="px-6 py-2 bg-[#28b684] text-white rounded-lg font-semibold hover:bg-green-700 transition"
-      >
-        OK
-      </button>
-    </div>
-  </div>
-
 </main>
 
 <!-- Script chính -->
 <script>
-  // === CONFIG ===
-  // ⚠️ Đổi URL dưới đây thành URL Web App của bạn (Latest deployment)
-  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbw1ALZsxBUXDDZCivItLZZfcp3TGVoNfcUnNmh4RfNCPRltKICgsbiVF934B064MnEUDw/exec';
-
   const ROUTES = {
     "Art Hoian": [
       "Route 1 — A Living Museum of Craftsmanship — Cycling to Kim Bồng & Trà Nhiêu",
@@ -322,10 +308,8 @@
   const routeSelect = document.getElementById("routeSelect");
   const routeHelp = document.getElementById("routeHelp");
   const dateInput = document.getElementById("dateInput");
-  const modal = document.getElementById("successModal");
-  const closeModal = document.getElementById("closeModal");
 
-  // Đảm bảo textarea Notes không có khoảng trắng mặc định để placeholder hiện ra
+  // placeholder Notes luôn trống value
   if (form.notes) {
     form.notes.value = form.notes.value.trim();
   }
@@ -356,53 +340,20 @@
     }
   });
 
-  // Form submit (không dùng reCAPTCHA, dùng no-cors để tránh CORS)
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    // Basic client validation
+  // Basic client validation trước khi submit thật sự
+  form.addEventListener("submit", (e) => {
     if (!tourSelect.value || !routeSelect.value) {
+      e.preventDefault();
       alert("Please choose both Tour and Route.");
       return;
     }
 
     if (dateInput.value && dateInput.min && dateInput.value < dateInput.min) {
+      e.preventDefault();
       alert("Please choose a valid date.");
       return;
     }
-
-    // Chuẩn bị dữ liệu gửi đi (URL-encoded)
-    const body = new URLSearchParams({
-      name:   form.name.value.trim(),
-      email:  form.email.value.trim(),
-      phone:  form.phone.value.trim(),
-      tour:   form.tour.value,
-      route:  form.route.value,
-      date:   form.date.value,
-      guests: form.guests.value,
-      notes:  form.notes.value.trim()
-    });
-
-    try {
-      // Gửi request tới Apps Script với no-cors để không bị chặn CORS
-      await fetch(WEBAPP_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body
-      });
-
-      // Nếu không bị exception thì coi như gửi thành công
-      modal.classList.remove("hidden");
-      form.reset();
-      routeSelect.disabled = true;
-    } catch (err) {
-      console.error(err);
-      alert("Network error. Please try again later.");
-    }
   });
-
-  // Close success popup
-  closeModal.addEventListener("click", () => modal.classList.add("hidden"));
 </script>
 
 <!-- Footer -->
@@ -427,9 +378,7 @@
       </div>
     </div>
 
-    <!-- Bản quyền để xuống cuối -->
     <p class="text-sm muted">&copy; 2025 Kickstarter Hoian — Supporting local youth & sustainable tourism.</p>
-
   </div>
 </footer>
 
