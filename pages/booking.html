@@ -248,14 +248,14 @@
       </div>
 
       <!-- Notes -->
-<div>
-  <label class="block text-sm font-semibold text-gray-700">Notes</label>
-  <textarea
-    name="notes"
-    rows="4"
-    class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
-    placeholder="Let us know if you have any preferences or special notes — e.g. transportation choice (bicycle, motorbike, or car), children joining the trip, dietary requirements, preferred departure time, or pick-up location."></textarea>
-</div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700">Notes</label>
+        <textarea
+          name="notes"
+          rows="4"
+          class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#28b684] focus:outline-none"
+          placeholder="Let us know if you have any preferences or special notes — e.g. transportation choice (bicycle, motorbike, or car), children joining the trip, dietary requirements, preferred departure time, or pick-up location."></textarea>
+      </div>
 
       <button
         type="submit"
@@ -324,10 +324,12 @@
   const dateInput = document.getElementById("dateInput");
   const modal = document.getElementById("successModal");
   const closeModal = document.getElementById("closeModal");
-// Đảm bảo textarea Notes không có khoảng trắng mặc định để placeholder hiện ra
-if (form.notes) {
-  form.notes.value = form.notes.value.trim();
-}
+
+  // Đảm bảo textarea Notes không có khoảng trắng mặc định để placeholder hiện ra
+  if (form.notes) {
+    form.notes.value = form.notes.value.trim();
+  }
+
   // Disable past dates (timezone-safe)
   (() => {
     const tzOffset = new Date().getTimezoneOffset() * 60000;
@@ -354,7 +356,7 @@ if (form.notes) {
     }
   });
 
-  // Form submit (không dùng reCAPTCHA)
+  // Form submit (không dùng reCAPTCHA, dùng no-cors để tránh CORS)
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -382,24 +384,17 @@ if (form.notes) {
     });
 
     try {
-      const res = await fetch(WEBAPP_URL, { method: "POST", body });
-      const ct = res.headers.get('content-type') || '';
-      let ok = false, json = {};
+      // Gửi request tới Apps Script với no-cors để không bị chặn CORS
+      await fetch(WEBAPP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body
+      });
 
-      if (ct.includes('application/json')) {
-        json = await res.json();
-        ok = !!json.ok;
-      } else {
-        ok = res.ok;
-      }
-
-      if (ok) {
-        modal.classList.remove("hidden");
-        form.reset();
-        routeSelect.disabled = true;
-      } else {
-        alert("Submission failed: " + (json.error || "Unknown error"));
-      }
+      // Nếu không bị exception thì coi như gửi thành công
+      modal.classList.remove("hidden");
+      form.reset();
+      routeSelect.disabled = true;
     } catch (err) {
       console.error(err);
       alert("Network error. Please try again later.");
